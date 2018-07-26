@@ -1,16 +1,13 @@
-<html>
-	<head>
-		<title>Abhi's Blog</title>
-	</head>
-	<body>
-		<div>
-			<h1><a href=""> Abhi's First Blog</a></h1>
-		</div>
+{% extends 'blog/base.html' %}
 
-		<div>
-			<p>published: 18.07.2018, 4:23</p>
-			<h2><a href="">My First Post</a></h2>
-			<p>I really thankful to every teacher to teaching me python in DigitalPrizm.</p>
+{% block content %} 
+		{% for post in posts %}
+			<div class="post">
+			<div class="date">
+			<p>published: {{ post.published_date }}</p>
 		</div>
-	</body>
-</html>
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+			<p>{{ post.text|linebreaksbr }}</p>
+		</div>
+	{% endfor %}
+{% endblock %}
